@@ -21,5 +21,6 @@
 3. Levantar backend
 4. Ejecutar la app ```npm start``` o ```yarn start``` o bien ```ng serve -o```
 
-# Autor
+# Autores
 * MERINO FARFAN ELVIS HERNAN
+* ESTEFANI CARDOZA SIU
