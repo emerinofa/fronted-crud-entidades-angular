@@ -14,6 +14,7 @@
 * Para hacer cualquier solicitud sera necesario registrarse y autenticarse
 * Para realizar alguna actualizacion de cualquier registro se debe dar click a la caja de texto donde se desea editar
 
+
 # Cómo usarlo
 
 1. Clonar el proyecto
@@ -23,4 +24,6 @@
 
 # Autores
 * MERINO FARFAN ELVIS HERNAN
-* ESTEFANI CARDOZA SIU
+
+# Funcionalidades nuevas por hacer
+* Exportables de lista de entidades a excel
