@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row" style="margin-top: 50px;">
+      <div class="col-md-6 offset-md-3">
+          <div class="container text-center">
+              <img src="../../../assets/dosier.png" width="100" height="100" alt="icon-document">
+          </div>
+
+          <h1 class="text-center">Registar tipo de documento</h1>
+          <form>
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Codigo de documento</mat-label>
+                  <input type="text" maxlength="5" required [(ngModel)]="tipoDocumento.codigo" matInput placeholder="Digite el codigo del tipo de documento" name="code" id="code" [disabled]="tipoDocumento.id > 0">
+                  <mat-hint>El código debe ser único y empezar con las letras DC</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Descripcion</mat-label>
+                  <input [(ngModel)]="tipoDocumento.descripcion" type="text" matInput placeholder="Digite la descripcion del tipo de documento" name="description">
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Nombre</mat-label>
+                  <input required [(ngModel)]="tipoDocumento.nombre" type="text" matInput placeholder="Digite el nombre del tipo de documento" name="nombre">
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Estado</mat-label>
+                  <mat-select required [(ngModel)]="tipoDocumento.estado" name="estado_">
+                      <mat-option>-- Seleccionar un estado --</mat-option>
+                      <mat-option [value]="1">ACTIVO</mat-option>
+                      <mat-option [value]="0">INACTIVO</mat-option>
+                  </mat-select>
+              </mat-form-field>
+
+              <div class="container text-center">
+                  <button type="submit" mat-raised-button color="primary" (click)="crearTipoDocumento()" *ngIf="!tipoDocumento.id" style="margin-top: 15px;">Guardar</button>
+                  <button type="submit" style="margin-left: 20px;" mat-raised-button color="accent" (click)="actualizarTipoDocumento()" *ngIf="tipoDocumento.id" style="margin-top: 15px;">Editar</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>

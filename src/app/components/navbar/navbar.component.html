@@ -1,0 +1,66 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav mode="push" [ngStyle]="{width: '300px'}">
+    <mat-toolbar>
+      <span>Menu</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button (click)="sidenav.toggle()" *ngIf="isLoggedIn">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <mat-list-item
+        *ngFor="let item of sidebarItems"
+        [routerLink]="item.url"
+        (click)="sidenav.toggle()"
+      >
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          {{ item.label }}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()" *ngIf="isLoggedIn">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="example-spacer"></span>
+
+    <button
+      *ngIf = "!isLoggedIn"
+      [routerLink]="'/login'"
+      mat-raised-button
+      style="margin-right: 25px;"
+    >
+      Iniciar sesión
+    </button>
+
+    <button *ngIf = "isLoggedIn"
+      (click) = "logout()"
+      mat-raised-button
+      color="warn"
+      style="margin-right: 25px;"
+    >
+      Cerrar sesión
+    </button>
+
+    <button
+      *ngIf = "isLoggedIn && user"
+      mat-raised-button
+    >
+    {{ user.username }}
+  </button>
+
+    <button
+      mat-raised-button
+      [routerLink]="'/signup'"
+      *ngIf = "!isLoggedIn">
+        Registrarse
+    </button>
+  </mat-toolbar>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

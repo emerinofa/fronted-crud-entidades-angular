@@ -1,0 +1,68 @@
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-6 offset-md-3">
+                <div class="container text-center">
+                    <img src="../../../assets/bussines.png" width="100" height="100" alt="icon-compania">
+                </div>
+
+                <h1 class="text-center">Registar Entidad</h1>
+                <form >
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Nombre comercial</mat-label>
+                        <input type="text" [(ngModel)]="entity.nombre_comercial" matInput placeholder="Digite el nombre de la entidad" name="nombre">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Razón social</mat-label>
+                        <input required [(ngModel)]="entity.razon_social" type="text" minlength="3" matInput placeholder="Digite la razón social de la entidad" name="razon">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Numero de documento</mat-label>
+                        <input required [(ngModel)]="entity.nro_documento" type="text" maxlength="15" matInput placeholder="Digite el número de documento" name="nro-documento">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Direccion</mat-label>
+                        <input [(ngModel)]="entity.direccion" type="text" maxlength="100" matInput placeholder="Digite la direccion" name="direccion">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Estado</mat-label>
+                        <mat-select required [(ngModel)]="entity.estado" name="estado_">
+                            <mat-option>-- Seleccionar un estado --</mat-option>
+                            <mat-option [value]="1">ACTIVO</mat-option>
+                            <mat-option [value]="0">INACTIVO</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div class="form-group row">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Tipo de documento</mat-label>
+                            <mat-select [compareWith]="compararTipoDocumento" [(ngModel)]="entity.tipo_documento" name="tipo_documento">
+                                <mat-option>-- Seleccionar un tipo de documento --</mat-option>
+                                <mat-option *ngFor="let documentType of documentsType" [value]="documentType">{{ documentType.descripcion }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group row">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Tipo de contribuyente</mat-label>
+                            <mat-select [compareWith]="compararTipoContribuyente" [(ngModel)]="entity.tipo_contribuyente" name="tipo_contribuyente">
+                                <mat-option>-- Seleccionar un tipo de contribuyente --</mat-option>
+                                <mat-option *ngFor="let taxpayerType of taxpayersType" [value]="taxpayerType">{{ taxpayerType.nombre }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="container text-center">
+                        <button type="submit" mat-raised-button color="primary" (click)="addEntity()" *ngIf="!entity.id" style="margin-top: 15px;">Guardar</button>
+                        <button type="reset" style="margin-left: 20px;" mat-raised-button color="accent" (click)="updateEntity()" *ngIf="entity.id" style="margin-top: 15px;">Editar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="container">
+  <h2>Lista de tipos de documentos</h2>
+  <div class="container">
+    <button class="mt10 mb10" [routerLink]="['formulario-tipo-documento']" mat-raised-button color="primary">Crear tipo de documento</button>
+  </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Buscar tipo de documento</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Digite nombre del tipo de documento" #input>
+      </mat-form-field>
+      <div class="col-12">
+        <mat-card>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="code">
+              <th mat-header-cell *matHeaderCellDef> Código </th>
+              <td mat-cell *matCellDef="let documentType"> {{documentType.codigo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef> Descripción </th>
+              <td mat-cell *matCellDef="let documentType"> {{documentType.descripcion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Estado </th>
+              <td mat-cell *matCellDef="let documentType"> {{ documentType.estado == '1' ? 'ACTIVO' : 'INACTIVO' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name" style="width: 30px;">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let documentType"> {{documentType.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef style="width: 120px;"> Acciones </th>
+              <td mat-cell *matCellDef="let documentType" style="width: 80px;">
+                <button mat-icon-button color="primary" [routerLink]="['formulario-tipo-documento', documentType.id]">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="eliminarTipoDocumento(documentType.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons>
+          </mat-paginator>
+        </mat-card>
+      </div>
+    </div>
+</div>
+
+
